@@ -1,0 +1,16 @@
+# http routing section
+[http]
+  [http.routers]
+     # Define a connection between requests and services
+     [http.routers.to-homeassistant]
+        rule = "Host(`ha.{{env "BASE_DOMAIN"}}`)"
+        # If the rule matches, forward to the homeassistant service (declared below)
+        service = "homeassistant"
+        entryPoints = ["websecure"]
+        [http.routers.to-homeassistant.tls]
+          certResolver = "myresolver"
+
+  [http.services]
+    [http.services.homeassistant.loadBalancer]
+      [[http.services.homeassistant.loadBalancer.servers]]
+        url = "http://homeassistant:8123"

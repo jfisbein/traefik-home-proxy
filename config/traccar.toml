@@ -1,0 +1,15 @@
+# http routing section
+[http]
+  [http.routers]
+     # Define a connection between requests and services
+     [http.routers.to-traccar]
+        rule = "Host(`traccar.{{env "BASE_DOMAIN"}}`)"
+        # If the rule matches, forward to the traccar service (declared below)
+        service = "traccar"
+        [http.routers.to-traccar.tls]
+          certResolver = "myresolver"
+
+  [http.services]
+    [http.services.traccar.loadBalancer]
+      [[http.services.traccar.loadBalancer.servers]]
+        url = "http://monzon:8082/"

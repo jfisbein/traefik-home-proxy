@@ -1,0 +1,12 @@
+# Dynamic Configuration
+[http.routers.my-api]
+  rule = "Host(`traefik.{{env "BASE_DOMAIN"}}`)"
+  service = "api@internal"
+  middlewares = ["auth"]
+    [http.routers.my-api.tls]
+      certResolver = "myresolver"
+
+[http.middlewares.auth.basicAuth]
+  users = [
+    "joan:$2y$05$tA6Ij7Qd9Lkv7K3UO.qdlezFIDc4jYdM8HjeQSo4.VIziodchQys."
+  ]

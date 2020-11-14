@@ -1,0 +1,15 @@
+# http routing section
+[http]
+  [http.routers]
+     # Define a connection between requests and services
+     [http.routers.to-books]
+        rule = "Host(`books.{{env "BASE_DOMAIN"}}`)"
+        # If the rule matches, forward to the books service (declared below)
+        service = "books"
+        [http.routers.to-books.tls]
+          certResolver = "myresolver"
+
+  [http.services]
+    [http.services.books.loadBalancer]
+      [[http.services.books.loadBalancer.servers]]
+        url = "http://monzon:8083/"

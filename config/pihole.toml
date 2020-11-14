@@ -1,0 +1,15 @@
+# http routing section
+[http]
+  [http.routers]
+     # Define a connection between requests and services
+     [http.routers.to-pihole]
+        rule = "Host(`pihole.{{env "BASE_DOMAIN"}}`)"
+        # If the rule matches, forward to the pihole service (declared below)
+        service = "pihole"
+        [http.routers.to-pihole.tls]
+          certResolver = "myresolver"
+
+  [http.services]
+    [http.services.pihole.loadBalancer]
+      [[http.services.pihole.loadBalancer.servers]]
+        url = "http://pihole:80/"

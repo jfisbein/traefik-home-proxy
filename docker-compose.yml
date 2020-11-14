@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+
+  traefik:
+    image: "traefik:v2.3"
+    restart: unless-stopped
+    container_name: "traefik"
+    command:
+      - "--entrypoints.web.address=:8080"
+      - "--entrypoints.websecure.address=:443"
+      - "--providers.file.directory=/etc/traefik/conf.d/"
+      - "--api.dashboard=true"
+      - "--certificatesresolvers.myresolver.acme.email=${LETSENCRYPT_USER}"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      #- "--certificatesresolvers.myresolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.dnschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=gandiv5"
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.delayBeforeCheck=0"
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=173.246.98.2:53,213.167.229.2:53"
+    ports:
+      - "8080:8080"
+      - "443:443"
+    environment:
+      - "GANDIV5_API_KEY=${GANDIV5_API_KEY}"
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - ".config:/etc/traefik/conf.d/"
