@@ -18,6 +18,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=gandiv5"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.delayBeforeCheck=0"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=173.246.98.2:53,213.167.229.2:53"
+      #- "--log.level=DEBUG"
     ports:
       - "8080:8080"
       - "443:443"
@@ -26,4 +27,4 @@ services:
       - BASE_DOMAIN
     volumes:
       - "./letsencrypt:/letsencrypt"
-      - ".config:/etc/traefik/conf.d/"
+      - "./config:/etc/traefik/conf.d/"
