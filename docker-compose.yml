@@ -22,7 +22,8 @@ services:
       - "8080:8080"
       - "443:443"
     environment:
-      - "GANDIV5_API_KEY=${GANDIV5_API_KEY}"
+      - GANDIV5_API_KEY
+      - BASE_DOMAIN
     volumes:
       - "./letsencrypt:/letsencrypt"
       - ".config:/etc/traefik/conf.d/"
