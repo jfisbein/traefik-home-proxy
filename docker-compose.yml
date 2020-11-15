@@ -16,8 +16,8 @@ services:
       #- "--certificatesresolvers.myresolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.myresolver.acme.dnschallenge=true"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=gandiv5"
-      - "--certificatesresolvers.myresolver.acme.dnschallenge.delayBeforeCheck=0"
-      - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=173.246.98.2:53,213.167.229.2:53"
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.delayBeforeCheck=10"
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,8.8.8.8:53"
       #- "--log.level=DEBUG"
     ports:
       - "8080:8080"
