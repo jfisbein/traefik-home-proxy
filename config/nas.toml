@@ -2,11 +2,11 @@
 [http]
   [http.routers]
      # Define a connection between requests and services
-     [http.routers.to-traccar]
+     [http.routers.to-nas]
         rule = "Host(`nas.{{env "BASE_DOMAIN"}}`)"
-        # If the rule matches, forward to the traccar service (declared below)
+        # If the rule matches, forward to the nas service (declared below)
         service = "synology"
-        [http.routers.to-traccar.tls]
+        [http.routers.to-nas.tls]
           certResolver = "myresolver"
 
   [http.services]
