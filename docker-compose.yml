@@ -9,6 +9,7 @@ services:
     command:
       - "--entrypoints.web.address=:8080"
       - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.cloud-station.address=:6690"
       - "--providers.file.directory=/etc/traefik/conf.d/"
       - "--api.dashboard=true"
       - "--certificatesresolvers.myresolver.acme.email=${LETSENCRYPT_USER}"
