@@ -13,3 +13,15 @@
     [http.services.synology.loadBalancer]
       [[http.services.synology.loadBalancer.servers]]
         url = "http://monzon:5000/"
+
+# TCP routing for cloud station
+[tcp]
+  [tcp.routers]
+    [tcp.routers.to-cloud-station]
+      entryPoints = ["cloud-station"]
+      rule = "HostSNI(`nas.{{env "BASE_DOMAIN"}}`)"
+      service = "cloud-station"
+
+  [tcp.services]
+    [[tcp.services.cloud-station.loadBalancer.servers]]
+      address = "monzon:6690"
