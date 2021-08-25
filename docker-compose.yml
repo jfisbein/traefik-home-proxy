@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   traefik:
-    image: "traefik:v2.3"
+    image: "traefik:v2.4"
     restart: unless-stopped
     container_name: "traefik"
     command:
@@ -19,6 +19,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=gandiv5"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.delayBeforeCheck=10"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,8.8.8.8:53"
+      - "--pilot.token=${TRAEFIK_PILOT_TOKEN}"
       #- "--log.level=DEBUG"
     ports:
       - "8080:8080"
