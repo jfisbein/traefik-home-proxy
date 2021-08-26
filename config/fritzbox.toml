@@ -3,7 +3,7 @@
   [http.routers]
      # Define a connection between requests and services
      [http.routers.to-fritzbox]
-        rule = "Host(`fritzbox.{{env "BASE_DOMAIN"}}`)"
+        rule = "Host(`fritz.{{env "BASE_DOMAIN"}}`)"
         # If the rule matches, forward to the fritzbox service (declared below)
         service = "fritzbox"
         [http.routers.to-fritzbox.tls]
@@ -12,4 +12,4 @@
   [http.services]
     [http.services.fritzbox.loadBalancer]
       [[http.services.fritzbox.loadBalancer.servers]]
-        url = "https://joan.{{env "BASE_DOMAIN"}}:8443"
+        url = "http://fritz.box"
