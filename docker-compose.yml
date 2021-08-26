@@ -16,7 +16,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
       #- "--certificatesresolvers.myresolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.myresolver.acme.dnschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=gandiv5"
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=${LE_DNS_PROVIDER}"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.delayBeforeCheck=10"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,8.8.8.8:53"
       - "--pilot.token=${TRAEFIK_PILOT_TOKEN}"
@@ -25,7 +25,8 @@ services:
       - "8080:8080"
       - "443:443"
     environment:
-      - GANDIV5_API_KEY
+      - PORKBUN_API_KEY
+      - PORKBUN_SECRET_API_KEY
       - BASE_DOMAIN
     volumes:
       - "./letsencrypt:/letsencrypt"
