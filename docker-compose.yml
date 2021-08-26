@@ -9,7 +9,6 @@ services:
     command:
       - "--entrypoints.web.address=:8080"
       - "--entrypoints.websecure.address=:443"
-      - "--entrypoints.cloud-station.address=:6690"
       - "--providers.file.directory=/etc/traefik/conf.d/"
       - "--api.dashboard=true"
       - "--certificatesresolvers.myresolver.acme.email=${LETSENCRYPT_USER}"
@@ -18,7 +17,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.dnschallenge=true"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=${LE_DNS_PROVIDER}"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.delayBeforeCheck=10"
-      - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,8.8.8.8:53"
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,8.8.8.8:53,salvador.porkbun.com:53,curitiba.porkbun.com:53"
       - "--pilot.token=${TRAEFIK_PILOT_TOKEN}"
       #- "--log.level=DEBUG"
     ports:
