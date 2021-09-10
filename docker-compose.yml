@@ -32,8 +32,9 @@ services:
       - "./config:/etc/traefik/conf.d/"
 
   echo:
-    image: hashicorp/http-echo
+    image: pierrezemb/gostatic
     restart: unless-stopped
-    command: -text="hello world"
     ports:
-      - "5678:5678"
+      - "8043:8043"
+    volumes:
+      - "./echo:/srv/http"
