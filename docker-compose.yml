@@ -30,3 +30,10 @@ services:
     volumes:
       - "./letsencrypt:/letsencrypt"
       - "./config:/etc/traefik/conf.d/"
+
+  echo:
+    image: hashicorp/http-echo
+    restart: unless-stopped
+    command: -text="hello world"
+    ports:
+      - "5678:5678"

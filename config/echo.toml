@@ -1,0 +1,15 @@
+# http routing section
+[http]
+  [http.routers]
+     # Define a connection between requests and services
+     [http.routers.to-echo]
+        rule = "Host(`echo.{{env "BASE_DOMAIN"}}`)"
+        # If the rule matches, forward to the echo service (declared below)
+        service = "echo"
+        [http.routers.to-echo.tls]
+          certResolver = "myresolver"
+
+  [http.services]
+    [http.services.echo.loadBalancer]
+      [[http.services.echo.loadBalancer.servers]]
+        url = "http://localhost:5678/"
