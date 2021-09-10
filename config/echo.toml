@@ -12,4 +12,4 @@
   [http.services]
     [http.services.echo.loadBalancer]
       [[http.services.echo.loadBalancer.servers]]
-        url = "http://localhost:8043/"
+        url = "http://pihole:8043/"
